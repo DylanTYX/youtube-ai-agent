@@ -16,6 +16,8 @@ export const createChat = mutation({
       userId: identity.subject,
       createdAt: Date.now(),
     });
+
+    return chat;
   },
 });
 
