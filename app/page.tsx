@@ -19,7 +19,7 @@ export default function LandingPage() {
             can actually get things done!
             <br />
             <span className="text-gray-400 text-sm">
-              Powered by IBM&apos;s WxTools & your favourite LLM&apos;s.
+              Powered by IBM&apos;s WxTools & your favorite LLM&apos;s.
             </span>
           </p>
         </header>
