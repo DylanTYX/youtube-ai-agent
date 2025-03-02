@@ -26,7 +26,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
     name: string;
     input: unknown;
   } | null>(null);
-  const messageEndRef = useRef<HTMLDivElement>(null);
+  const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const formatToolOutput = (output: unknown): string => {
     if (typeof output === "string") return output;
@@ -79,7 +79,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
   };
 
   useEffect(() => {
-    messageEndRef.current?.scrollIntoView({ behavior: "smooth" });
+    messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, streamedResponse]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -176,12 +176,13 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
                   '<div class="bg-[#1e1e1e]'
                 );
                 if (lastTerminalIndex !== -1) {
-                  fullResponse = fullResponse.substring(0, lastTerminalIndex);
-                  formatTerminalOutput(
-                    message.tool,
-                    currentTool.input,
-                    message.output
-                  );
+                  fullResponse =
+                    fullResponse.substring(0, lastTerminalIndex) +
+                    formatTerminalOutput(
+                      message.tool,
+                      currentTool.input,
+                      message.output
+                    );
 
                   setStreamedResponse(fullResponse);
                 }
@@ -271,7 +272,7 @@ function ChatInterface({ chatId, initialMessages }: ChatInterfaceProps) {
               </div>
             </div>
           )}
-          {/* <div ref={messagesEndRef} /> */}
+          <div ref={messagesEndRef} />
         </div>
       </section>
 
